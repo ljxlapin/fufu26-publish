@@ -1,0 +1,386 @@
+:root {
+    --base-font-size: 18px;  /* 只需修改这里即可调整所有大小 */
+    --title-size: 1.5; /* 标题大小是基础字体大小的倍数 */
+    --name-size: 0.85; /* 名字大小是基础字体大小的倍数 */
+    --engineer-department-size: 0.85; /* 工程师部门名字大小是基础字体大小的倍数 */
+    --engineer-department-width: 0.9; /* 工程师部门宽度是最大宽度的倍数 */
+    --engineer-department-max-width: 550px; /* 工程师部门最大宽度 */
+    --line-height: 1.5;
+    --max-width: 750px;
+    --default-width: 96%;
+    --padding: 15px;
+    --title-padding: 10px;
+    --input-padding: 10px;
+    --chat-width-minus: 10px;
+    --avatar-size: 45px;
+    --paragraph-margin-coefficient: 0.2;
+    --check-message-color: 99.99%;
+    --avatar-margin-top: 3px;
+    --avatar-margin-right: 8px;
+    --send-button-padding: 8.5px 17px;
+    --engineer-department-gap: 4px;
+    --puzzle-list-line-length: 17;
+}
+@media (max-width: 550px) {
+    :root {
+        --engineer-department-size: 0.93;
+        --engineer-department-width: 1; /* 工程师部门宽度是最大宽度的倍数 */
+        --engineer-department-max-width: 300px; /* 工程师部门最大宽度 */
+        --base-font-size: 16px;
+        --padding: 12px;
+        --title-padding: 8px;
+        --input-padding: 8px;
+        --chat-width-minus: 8px;
+        --avatar-size: 37.5px;
+        --avatar-margin-top: 5px;
+        --avatar-margin-right: 6px;
+        --send-button-padding: 7px 14px;
+        --engineer-department-gap: 3.5px;
+        --puzzle-list-line-length: 10;
+    }
+}
+
+body {
+    font-family: Arial, sans-serif;
+    font-size: var(--base-font-size);
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 让内容水平居中 */
+    height: 100vh;
+    overflow: hidden;
+}
+
+p {
+    margin: calc(var(--paragraph-margin-coefficient) * 1em) 0;
+}
+
+h1 {
+    font-size: calc(var(--base-font-size) * var(--title-size));
+    font-weight: bold;
+    text-align: center;
+    padding: var(--title-padding) 0 0 0;
+    margin: calc(var(--paragraph-margin-coefficient) * 1em) 0;
+    background-color: #fff;
+    color: #000;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 10; /* 确保标题在聊天框之上 */
+}
+
+h2 {
+    display: block;
+    font-size: 1.21em;
+    margin: calc(var(--paragraph-margin-coefficient) * 1em) 0;
+    font-weight: bold;
+    unicode-bidi: isolate;
+}
+
+h3 {
+    display: block;
+    font-size: 1.1em;
+    margin: calc(var(--paragraph-margin-coefficient) * 1em) 0;
+    font-weight: bold;
+    unicode-bidi: isolate;
+}
+
+#engineer-department {
+    font-size: calc(var(--base-font-size) * var(--engineer-department-size));
+    width: 33.5em;
+    line-height: 1em;
+    display: flex;
+    flex-wrap: wrap;
+    z-index: 11; 
+    gap: var(--engineer-department-gap) 0;
+}
+
+.table-key-l {
+    flex: 1 0 4em;
+}
+.table-key-r {
+    flex: 1 0 5em;
+}
+.table-value-l {
+    flex: 1 0 10em;
+    text-align: right;
+    margin-right: 3em;
+}
+.table-value-r {
+    flex: 1 0 11.5em;
+    text-align: right;
+}
+
+.not-working #table-item-1 {
+    flex: 1 0 4em;
+}
+.not-working #table-item-2 {
+    flex: 1 0 11em;
+    margin-right: 3.5em;
+    text-align: right;
+}
+.not-working #table-item-5 {
+    flex: 1 0 4em;
+}
+.not-working #table-item-6 {
+    flex: 1 0 11em;
+    text-align: right;
+    margin-right: 0em;
+}
+.not-working #table-item-3, .not-working #table-item-4, .not-working #table-item-7, .not-working #table-item-8 {
+    display: none;
+}
+
+
+@media (max-width: 550px) {
+    #engineer-department {
+        width: calc(var(--default-width) * var(--engineer-department-width));
+        max-width: calc(min(var(--engineer-department-max-width), var(--max-width) * var(--engineer-department-width)));    
+    }
+    .table-key-l, .table-key-r {
+        flex: 1 0 6em;
+    }
+    .table-value-l, .table-value-r {
+        flex: 1 0 calc(100% - 6em);
+        margin-right: 0em;
+    }
+    .not-working #table-item-1 {
+        flex: 1 0 4em;
+    }
+    .not-working #table-item-2 {
+        flex: 1 0 calc(100% - 4em);
+        margin-right: 0em;
+    }
+    .not-working #table-item-5 {
+        flex: 1 0 4em;
+    }
+    .not-working #table-item-6 {
+        flex: 1 0 calc(100% - 4em);
+    }
+}
+
+#table-puzzle-list {
+    display: flex;
+    align-items: flex-start;
+    flex: 1;
+}
+
+#list-label {
+    white-space: nowrap;
+    flex: 0 0 5em;
+}
+
+#list-grid {
+    display: grid;
+    grid-template-columns: repeat(var(--puzzle-list-line-length), 1fr);
+    flex: var(--puzzle-list-line-length); /* 占满剩余空间 */
+    gap: var(--engineer-department-gap);
+}
+
+#list-grid a {
+    display: inline-block;
+    width: 100%;
+    text-align: center;     /* 水平居中 */
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #000;
+    text-decoration: none; /* 去掉下划线 */
+}
+
+#list-grid a:hover {
+    scale: 1.25; /* 鼠标悬停时放大 */
+    color: #007bff; /* 鼠标悬停时变色为更亮更高饱和度的鲜艳蓝色 */
+}
+
+#list-grid a.solved {
+    background-color: #0f0;
+}
+
+
+
+#chat-box {
+    flex: 1;
+    padding-top: var(--padding);
+    padding-bottom: var(--padding);
+    padding-right: calc(50% + var(--chat-width-minus) - min(var(--max-width), var(--default-width)) / 2);
+    padding-left: calc(50% - min(var(--max-width), var(--default-width)) / 2);
+    overflow-y: scroll;
+    background-color: #fff;
+    width: calc(var(--default-width) - var(--chat-width-minus)); /* 让聊天框宽度等于屏幕宽度减去左右边距 */
+    max-width: calc(var(--max-width) - var(--chat-width-minus)); /* 最大宽度 */
+    font-size: var(--base-font-size);
+}
+
+#chat-box::-webkit-scrollbar {
+    display: none; /* 隐藏滚动条 */
+}
+
+.name {
+    font-size: calc(var(--base-font-size) * var(--name-size));
+    color: #666;
+    margin-top: 2px;
+    margin-bottom: 0px;
+}
+
+#input-container {
+    display: flex;
+    padding: var(--input-padding) 0;
+    background-color: #fff;
+    position: sticky;
+    bottom: 0;
+    width: var(--default-width);
+    max-width: var(--max-width); /* 最大宽度 */
+}
+
+#user-input::placeholder {
+  color: #888;
+  font-style: italic;
+}
+
+
+
+#user-input {
+    flex: 1;
+    padding: var(--input-padding);
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-right: 10px;
+    font-size: var(--base-font-size);
+    resize: none; /* 禁止手动拖动 */
+    overflow-y: hidden; /* 隐藏滚动条 */
+}
+
+
+
+#send-btn {
+    padding: var(--send-button-padding);
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: var(--base-font-size);
+}
+
+#send-btn:hover {
+    background-color: #0056b3;
+}
+
+.message {
+    margin-bottom: 10px;
+    word-wrap: break-word; /* 让超长的单词或数字换行 */
+    overflow-wrap: break-word; /* 让内容在容器内换行 */
+    white-space: normal; /* 允许换行 */
+    max-width: 100%; /* 防止消息超出聊天框 */
+    font-size: var(--base-font-size);
+}
+
+
+.human-message {
+    text-align: right;
+    color: #007bff;
+}
+
+.bot-message {
+    text-align: left;
+    color: #000;
+    display: flex;
+    align-items: flex-start; /* 让头像和文字对齐 */
+}
+
+.info-message {
+    text-align: center;
+    color: #888;
+    font-size : calc(0.9 * var(--base-font-size));
+    padding-left: var(--chat-width-minus);
+}
+
+.avatar {
+    width: var(--avatar-size);  /* 头像大小 */
+    height: var(--avatar-size);
+    border-radius: 10%; /* 让头像变成圆形 */
+    margin-right: var(--avatar-margin-right);
+    margin-top: var(--avatar-margin-top);
+}
+
+.right-message {
+    color: color-mix(in srgb, #43a047 99.99%, black);
+}
+.wrong-message {
+    color: color-mix(in srgb, #e53935 99.99%, black);
+}
+.question-message {
+    color: color-mix(in srgb, #ffb300 75%, black);
+}
+.exclamation-message {
+    color: color-mix(in srgb, #1e88e5 90%, black);
+}
+
+.puzzle-flavor {
+    font-style:italic;
+}
+.puzzle-key {
+    font-weight: bold;
+    color: color-mix(in srgb, #0f0 75%, black);
+}
+.clickable {
+    cursor: pointer;
+    color: #007bff;
+    text-decoration: underline;
+}
+
+.italic {
+    font-style: italic;
+}
+.bold {
+    font-weight: bold;
+}
+
+.no-display {
+    display: none;
+}
+
+.pre-copyable {
+    font-style: italic;
+    margin-bottom: 0.75em;
+}
+
+.copyable {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas,
+               "Liberation Mono", monospace;
+  white-space: pre-wrap;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.msg-time {
+    margin-left: 0.75em;
+}
+
+.hint-list { padding-left: 1.25em; }
+.hint-item > p { margin: 0.2em 0; }  /* 压缩 li 内的段落间距 */
+
+ol.hint-list {
+  margin-top: 0.2em;
+  margin-bottom: 0.4em;
+}
+
+.hint-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.8em;
+}
+
+.hint-description {
+  flex: 1 1 auto;   /* 关键：允许它换行 */
+}
+
+.hint-status {
+  flex: 0 0 auto;
+  white-space: nowrap;
+  font-size: 0.9em;
+}
