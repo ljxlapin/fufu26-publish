@@ -42,11 +42,6 @@
     }
 }
 
-#chat-box { outline: 2px solid rgba(0, 128, 255, 0.5); }
-#input-container { outline: 2px solid rgba(255, 0, 0, 0.5); }
-
-
-
 body {
     font-family: Arial, sans-serif;
     font-size: var(--base-font-size);
@@ -212,7 +207,7 @@ h3 {
 #chat-box {
     flex: 1;
     padding-top: var(--padding);
-    padding-bottom: calc(var(--padding) + 2em * var(--is-mobile) + env(safe-area-inset-bottom));
+    padding-bottom: var(--padding);
     padding-right: calc(50% + var(--chat-width-minus) - min(var(--max-width), var(--default-width)) / 2);
     padding-left: calc(50% - min(var(--max-width), var(--default-width)) / 2);
     overflow-y: auto;
