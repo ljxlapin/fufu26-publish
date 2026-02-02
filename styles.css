@@ -42,18 +42,24 @@
     }
 }
 
+#chat-box { outline: 2px solid rgba(0, 128, 255, 0.5); }
+#input-container { outline: 2px solid rgba(255, 0, 0, 0.5); }
+
+
+
 body {
     font-family: Arial, sans-serif;
     font-size: var(--base-font-size);
     background-color: #fff;
     margin: 0;
     padding: 0;
+    height: 100dvh;
     display: flex;
     flex-direction: column;
     align-items: center; /* 让内容水平居中 */
-    height: 100vh;
     overflow: hidden;
 }
+
 
 p {
     margin: calc(var(--paragraph-margin-coefficient) * 1em) 0;
@@ -215,6 +221,7 @@ h3 {
     width: calc(var(--default-width) - var(--chat-width-minus)); /* 让聊天框宽度等于屏幕宽度减去左右边距 */
     max-width: calc(var(--max-width) - var(--chat-width-minus)); /* 最大宽度 */
     font-size: var(--base-font-size);
+    min-height: 0;   /* 这是手机滚动 bug 的常见解药 */
 }
 
 #chat-box::-webkit-scrollbar {
